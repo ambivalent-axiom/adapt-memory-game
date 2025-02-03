@@ -1,10 +1,10 @@
 {
   "name": "adapt-memory-game",
-  "repository": "git://github.com/yourusername/adapt-memory-game.git",
+  "repository": "git@github.com:ambivalent-axiom/adapt-memory-game.git",
   "framework": ">=5.19.1",
   "version": "1.0.0",
-  "homepage": "https://github.com/yourusername/adapt-memory-game",
-  "issues": "https://github.com/yourusername/adapt-memory-game/issues",
+  "homepage": "https://github.com/ambivalent-axiom/adapt-memory-game",
+  "issues": "https://github.com/ambivalent-axiom/adapt-memory-game/issues",
   "component": "memory-game",
   "displayName": "Memory Game",
   "description": "A memory card matching game component",
