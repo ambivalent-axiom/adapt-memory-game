@@ -1,0 +1,214 @@
+.memory-game {
+    &__inner {
+        max-width: @device-width-medium;
+        margin: 0 auto;
+        padding: @item-padding;
+    }
+
+    &__widget {
+        position: relative;
+        .memory-game-start {
+            display: inline-block;
+            padding: @btn-padding;
+            background-color: @background;
+            color: @white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            
+            &:hover {
+                background-color: lighten(@black, 20%);
+            }
+        }
+    }
+
+    // Modal specific styles
+    &--modal-enabled {
+        .memory-game-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+
+            &.is-open {
+                display: block;
+            }
+
+            &__overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: fade(@black, 50%);
+            }
+
+            &__content {
+                position: relative;
+                max-width: 90%;
+                max-height: 90vh;
+                margin: 2em auto;
+                background: @white;
+                padding: @item-padding;
+                border-radius: @item-border-radius;
+                overflow: auto;
+
+                @media (min-width: @device-width-medium) {
+                    max-width: @device-width-medium;
+                }
+            }
+
+            &__close {
+                position: absolute;
+                top: @item-padding;
+                right: @item-padding;
+                background: none;
+                border: none;
+                font-size: 24px;
+                color: @font-color;
+                cursor: pointer;
+                padding: @btn-padding;
+                line-height: 1;
+                
+                &:hover {
+                    color: @black;
+                }
+            }
+        }
+    }
+
+    // Container structure
+    .memory-game-container {
+        width: 100%;
+        margin: @item-padding 0;
+
+        // Game status bar
+        .game-status {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: @item-padding;
+
+            .reset-button {
+                display: inline-block;
+                padding: @btn-padding;
+                border: none;
+                border-radius: 3px;
+                background-color: @background;
+                color: @white;
+                cursor: pointer;
+                
+                &:hover {
+                    background-color: lighten(@black, 20%);
+                }
+            }
+        }
+
+        // Card grid layout
+        .card-grid {
+            display: grid;
+            gap: @item-padding;
+        }
+
+        // Card styling
+        .memory-card {
+            aspect-ratio: 1 / 1;
+            perspective: 1000px;
+            cursor: pointer;
+
+            &.disabled {
+                cursor: default;
+                opacity: 0.8;
+            }
+
+            .card-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                transition: transform 0.6s;
+                transform-style: preserve-3d;
+            }
+
+            &.flipped .card-inner {
+                transform: rotateY(180deg);
+            }
+
+            .card-front, 
+            .card-back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                backface-visibility: hidden;
+                border-radius: @item-border-radius;
+                font-size: 2rem;
+            }
+
+            .card-front {
+                background-color: @background;
+                color: @white;
+                z-index: 2;
+                transform: rotateY(0deg);
+            }
+
+            .card-back {
+                background-color: @background;
+                color: @font-color;
+                transform: rotateY(180deg);
+            }
+        }
+
+        // Win message
+        .win-message {
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: @item-padding;
+            color: @validation-success;
+        }
+    }
+}
+
+// RTL support
+.dir-rtl {
+    .memory-game {
+        &--modal-enabled {
+            .memory-game-modal__close {
+                right: auto;
+                left: @item-padding;
+            }
+        }
+
+        .game-status {
+            flex-direction: row-reverse;
+        }
+    }
+}
+
+body {
+    &.memory-game-modal-open {
+        overflow: hidden;
+    }
+}
+
+// Responsive styles
+@media (max-width: @device-width-small) {
+    .memory-game {
+        .card-grid {
+            gap: @item-padding;
+        }
+
+        .memory-card {
+            .card-front, 
+            .card-back {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}

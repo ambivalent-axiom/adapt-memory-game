@@ -1,0 +1,17 @@
+<div class="component__inner memory-game__inner">
+  {{> component this}}
+  <div class="component__widget">
+    {{#if _isModal}}
+      <button class="memory-game-start btn-text">{{#if startText}}{{startText}}{{else}}Start Game{{/if}}</button>
+      <div class="memory-game-modal">
+        <div class="memory-game-modal__overlay"></div>
+        <div class="memory-game-modal__content">
+          <button class="memory-game-modal__close" aria-label="Close">×</button>
+          <div class="memory-game-container"></div>
+        </div>
+      </div>
+    {{else}}
+      <div class="memory-game-container"></div>
+    {{/if}}
+  </div>
+</div>

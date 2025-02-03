@@ -1,0 +1,26 @@
+{
+  "name": "adapt-memory-game",
+  "repository": "git://github.com/yourusername/adapt-memory-game.git",
+  "framework": ">=5.19.1",
+  "version": "1.0.0",
+  "homepage": "https://github.com/yourusername/adapt-memory-game",
+  "issues": "https://github.com/yourusername/adapt-memory-game/issues",
+  "component": "memory-game",
+  "displayName": "Memory Game",
+  "description": "A memory card matching game component",
+  "main": "js/adapt-memory-game-wrapper.js",
+  "keywords": [
+    "adapt-plugin",
+    "adapt-component",
+    "adapt",
+    "game"
+  ],
+  "license": "MIT",
+  "targetAttribute": "memory-game",
+  "authors": [
+    "Ambax@Digify arturs@digify.lv"
+  ],
+  "pluginDependencies": {
+    "adapt-contrib-core": ">=5.19.1"
+  }
+}

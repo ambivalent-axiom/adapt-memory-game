@@ -1,0 +1,223 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "http://jsonschema.net",
+  "required": false,
+  "globals": {
+    "ariaRegion": {
+      "type": "string",
+      "required": true,
+      "default": "Memory matching game. Match pairs of cards to complete.",
+      "inputType": "Text",
+      "validators": [],
+      "translatable": true
+    }
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": false,
+      "default": "Memory Game",
+      "inputType": "Text",
+      "validators": [],
+      "translatable": true
+    },
+    "displayTitle": {
+      "type": "string",
+      "required": false,
+      "default": "Memory Game",
+      "inputType": "Text",
+      "validators": [],
+      "translatable": true
+    },
+    "_isModal": {
+      "type": "boolean",
+      "default": true,
+      "title": "Enable Modal",
+      "inputType": "Checkbox",
+      "help": "Enable modal mode for the memory game"
+    },
+    "startText": {
+      "type": "string",
+      "default": "Start Game",
+      "title": "Start Button Text",
+      "inputType": "Text",
+      "help": "Text for the start button when modal mode is enabled"
+    },
+    "body": {
+      "type": "string",
+      "default": "Match the pairs to complete the game!",
+      "title": "Informational text.",
+      "inputType": "Text",
+      "help": "Text for the component description"
+    },
+    "_supportedLayout": {
+      "type": "string",
+      "required": true,
+      "enum": ["full-width", "half-width", "both"],
+      "default": "full-width",
+      "editorOnly": true
+    },
+    "_memory-game": {
+      "type": "object",
+      "required": false,
+      "title": "Memory Game",
+      "properties": {
+        "gridSize": {
+          "type": "number",
+          "required": false,
+          "default": 4,
+          "title": "Grid Size",
+          "inputType": "Number",
+          "validators": ["required", "number"],
+          "help": "Number of cards in each row/column (must be even)"
+        },
+        "movesText": {
+          "type": "string",
+          "default": "Moves",
+          "title": "Move counter",
+          "inputType": "Text",
+          "help": "Text to reflect before move counter."
+        },
+        "winMessage": {
+          "type": "string",
+          "default": "Conratulations! You Have Won!!!",
+          "title": "Win message",
+          "inputType": "Text",
+          "help": "Text to reflect when player wins."
+        },
+        "winSound": {
+          "type": "string",
+          "default": "",
+          "title": "Win sound",
+          "inputType": "Text",
+          "help": "URL to mp3 file with sound for winning."
+        },
+        "matchSound": {
+          "type": "string",
+          "default": "",
+          "title": "Match sound",
+          "inputType": "Text",
+          "help": "URL to mp3 file with sound for matching."
+        },
+        "flipSound": {
+          "type": "string",
+          "default": "",
+          "title": "Flip sound",
+          "inputType": "Text",
+          "help": "URL to mp3 file with sound when flipping."
+        },
+        "theme": {
+          "type": "object",
+          "required": false,
+          "title": "Theme Settings",
+          "properties": {
+            "primary": {
+              "type": "string",
+              "required": false,
+              "default": "#117f93",
+              "title": "Primary Color Class",
+              "inputType": "Text",
+              "validators": ["required"]
+            },
+            "secondary": {
+              "type": "string",
+              "required": false,
+              "default": "#117f93",
+              "title": "Secondary Color Class",
+              "inputType": "Text",
+              "validators": ["required"]
+            },
+            "text": {
+              "type": "string",
+              "required": false,
+              "default": "#000000",
+              "title": "Text Color Class",
+              "inputType": "Text",
+              "validators": ["required"]
+            },
+            "highlight": {
+              "type": "string",
+              "required": false,
+              "default": "#d1c008",
+              "title": "Highlight Color Class",
+              "inputType": "Text",
+              "validators": ["required"]
+            }
+          }
+        },
+        "cardPairs": {
+          "type": "array",
+          "required": false,
+          "title": "Card Pairs",
+          "items": {
+            "type": "object",
+            "required": true,
+            "title": "Card Pair",
+            "properties": {
+              "svg": {
+                "type": "string",
+                "required": true,
+                "title": "SVG Content",
+                "inputType": "TextArea",
+                "validators": ["required"],
+                "help": "SVG markup for the card visual"
+              },
+              "text": {
+                "type": "string",
+                "required": true,
+                "title": "Matching Text",
+                "inputType": "Text",
+                "validators": ["required"],
+                "help": "Text that matches with the SVG"
+              }
+            }
+          },
+          "default": [
+            {
+                "svg": "<svg viewBox='0 0 24 24'><path d='M21 6h-7.59l3.29-3.29L16 2l-4 4-4-4-.71.71L10.59 6H3c-1.1 0-2 .89-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.11-.9-2-2-2zm0 14H3V8h18v12zM9 10v8l7-4z' fill='currentColor'/></svg>",
+                "text": "Video Player"
+            },
+            {
+                "svg": "<svg viewBox='0 0 24 24'><path d='M20 5H4c-1.1 0-1.99.9-1.99 2L2 17c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 3h2v2h-2V8zm0 3h2v2h-2v-2zM8 8h2v2H8V8zm0 3h2v2H8v-2zm-1 2H5v-2h2v2zm0-3H5V8h2v2zm9 7H8v-2h8v2zm0-4h-2v-2h2v2zm0-3h-2V8h2v2zm3 3h-2v-2h2v2zm0-3h-2V8h2v2z' fill='currentColor'/></svg>",
+                "text": "Keyboard"
+            },
+            {
+                "svg": "<svg viewBox='0 0 24 24'><path d='M15 9H9v6h6V9zm-2 4h-2v-2h2v2zm8-2V9h-2V7c0-1.1-.9-2-2-2h-2V3h-2v2h-2V3H9v2H7c-1.1 0-2 .9-2 2v2H3v2h2v2H3v2h2v2c0 1.1.9 2 2 2h2v2h2v-2h2v2h2v-2h2c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2zm-4 6H7V7h10v10z' fill='currentColor'/></svg>",
+                "text": "Processor"
+            },
+            {
+                "svg": "<svg viewBox='0 0 24 24'><path d='M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z' fill='currentColor'/></svg>",
+                "text": "Monitor"
+            },
+            {
+                "svg": "<svg viewBox='0 0 24 24'><path d='M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z' fill='currentColor'/></svg>",
+                "text": "Printer"
+            },
+            {
+                "svg": "<svg viewBox='0 0 24 24'><path d='M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-2 .89-2 2v11c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z' fill='currentColor'/></svg>",
+                "text": "Battery"
+            },
+            {
+                "svg": "<svg viewBox='0 0 24 24'><path d='M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.48 2.54l2.6 1.53c.56-1.24.88-2.62.88-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.06.5-9 4.76-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z' fill='currentColor'/></svg>",
+                "text": "Loading"
+            },
+            {
+                "svg": "<svg viewBox='0 0 24 24'><path d='M15.9 5c-.17 0-.32.09-.41.23l-.07.15-5.18 11.65c-.16.29-.26.61-.26.96 0 1.11.9 2.01 2.01 2.01.96 0 1.77-.68 1.96-1.59l.01-.03L16.4 5.5c0-.28-.22-.5-.5-.5zM1 9l2 2c2.88-2.88 6.79-4.08 10.53-3.62l1.19-2.68C9.89 3.84 4.74 5.27 1 9zm20 2l2-2c-1.64-1.64-3.55-2.82-5.59-3.57l-.53 2.82c1.5.62 2.9 1.53 4.12 2.75zm-4 4l2-2c-.8-.8-1.7-1.42-2.66-1.89l-.55 2.92c.42.27.83.59 1.21.97zM5 13l2 2c1.13-1.13 2.56-1.79 4.03-2l1.28-2.88c-2.63-.08-5.3.87-7.31 2.88z' fill='currentColor'/></svg>",
+                "text": "WiFi"
+            }
+          ]
+        },
+        "_completionEvent": {
+          "type": "string",
+          "required": false,
+          "default": "",
+          "title": "Completion Event",
+          "inputType": "Text",
+          "validators": [],
+          "help": "Event to trigger when game is completed (optional)"
+        }
+      }
+    }
+  }
+}
