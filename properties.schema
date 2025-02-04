@@ -91,21 +91,21 @@
           "default": "",
           "title": "Win sound",
           "inputType": "Text",
-          "help": "URL to mp3 file with sound for winning."
+          "help": "URL to mp3 file from assets/ with sound for winning."
         },
         "matchSound": {
           "type": "string",
           "default": "",
           "title": "Match sound",
           "inputType": "Text",
-          "help": "URL to mp3 file with sound for matching."
+          "help": "URL to mp3 file from assets/ with sound for matching."
         },
         "flipSound": {
           "type": "string",
           "default": "",
           "title": "Flip sound",
           "inputType": "Text",
-          "help": "URL to mp3 file with sound when flipping."
+          "help": "URL to mp3 file from assets/ with sound when flipping."
         },
         "theme": {
           "type": "object",
@@ -161,7 +161,7 @@
                 "title": "SVG Content",
                 "inputType": "TextArea",
                 "validators": ["required"],
-                "help": "SVG markup for the card visual"
+                "help": "SVG markup for the card visual - single quoted, insert in HTML editor"
               },
               "text": {
                 "type": "string",
@@ -208,14 +208,14 @@
             }
           ]
         },
-        "_completionEvent": {
+        "onGameComplete": {
           "type": "string",
           "required": false,
           "default": "",
           "title": "Completion Event",
           "inputType": "Text",
           "validators": [],
-          "help": "Event to trigger when game is completed (optional)"
+          "help": "Event to trigger when game is completed (optional) - JS function in plain text"
         }
       }
     }

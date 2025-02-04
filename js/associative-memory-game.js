@@ -3,7 +3,11 @@ define(function () {
 
   class AssociativeMemoryGame {
     constructor(container, config = {}) {
-      this.onGameComplete = config.onGameComplete || (() => {});
+      console.log(config.onGameComplete);
+      this.onGameComplete = typeof config.onGameComplete === 'string'
+        // eslint-disable-next-line no-eval
+        ? () => eval(config.onGameComplete) // Convert string to function
+        : config.onGameComplete || (() => {});
       this.container = typeof container === 'string'
         ? document.querySelector(container)
         : container;
