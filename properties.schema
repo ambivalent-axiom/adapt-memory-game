@@ -90,22 +90,25 @@
           "type": "string",
           "default": "",
           "title": "Win sound",
-          "inputType": "Text",
-          "help": "URL to mp3 file from assets/ with sound for winning."
+          "inputType": "Asset:audio",
+          "help": "Select an mp3 file for the winning sound.",
+          "validators": ["required"]
         },
         "matchSound": {
           "type": "string",
           "default": "",
-          "title": "Match sound",
-          "inputType": "Text",
-          "help": "URL to mp3 file from assets/ with sound for matching."
+          "title": "Match sound", 
+          "inputType": "Asset:audio",
+          "help": "Select an mp3 file for the matching sound.",
+          "validators": ["required"]
         },
         "flipSound": {
           "type": "string",
           "default": "",
           "title": "Flip sound",
-          "inputType": "Text",
-          "help": "URL to mp3 file from assets/ with sound when flipping."
+          "inputType": "Asset:audio",
+          "help": "Select an mp3 file for the flipping sound.",
+          "validators": ["required"]
         },
         "theme": {
           "type": "object",
