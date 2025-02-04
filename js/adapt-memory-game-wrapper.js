@@ -2,10 +2,9 @@ define([
   'core/js/adapt',
   'core/js/views/componentView',
   'core/js/models/componentModel',
-  'core/js/logging',
   'core/js/components',
   './associative-memory-game'
-], function (Adapt, ComponentView, ComponentModel, Log, Components, AssociativeMemoryGame) {
+], function (Adapt, ComponentView, ComponentModel, Components, AssociativeMemoryGame) {
   'use strict';
 
   const MemoryGameView = ComponentView.extend({
@@ -97,7 +96,6 @@ define([
       try {
         this._game = new AssociativeMemoryGame(container, config);
       } catch (error) {
-        Log.error('Failed to initialize memory game:', error);
         Adapt.trigger('notify:alert', {
           title: 'Error',
           body: 'Failed to initialize memory game. Please refresh the page.'
