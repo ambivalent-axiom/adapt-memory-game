@@ -42,9 +42,9 @@ define(function () {
           highlight: config.theme?.highlight || '#28a745'
         },
         sounds: {
-          flip: config.flipSound || '../assets/flipcard.mp3',
-          match: config.matchSound || '../assets/success.mp3',
-          win: config.winSound || '../assets/win.mp3'
+          flip: config.flipSound || null,
+          match: config.matchSound || null,
+          win: config.winSound || null
         }
       };
 
