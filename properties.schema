@@ -208,25 +208,23 @@
             }
           ]
         },
-        "onGameComplete": {
-          "function": {
-            "type": "string",
-            "required": false,
-            "default": "",
-            "title": "Completion Event",
-            "inputType": "Text",
-            "validators": [],
-            "help": "Event to trigger when game is completed (optional) - JS function in plain text"
-          },
-          "timeout": {
-            "type": "number",
-            "required": false,
-            "default": 200,
-            "title": "Timeout",
-            "inputType": "Number",
-            "validators": ["required", "number"],
-            "help": "After what time should completion event be triggered in miliseconds."
-          }
+          "onGameComplete": {
+          "type": "string",
+          "required": false,
+          "default": "",
+          "title": "Completion Event",
+          "inputType": "Text",
+          "validators": [],
+          "help": "Event to trigger when game is completed (optional) - JS function in plain text"
+        },
+        "completionTimeout": { 
+          "type": "number",
+          "required": false,
+          "default": 200,
+          "title": "Timeout",
+          "inputType": "Number",
+          "validators": ["required", "number"],
+          "help": "After what time should completion event be triggered in miliseconds."
         }
       }
     }

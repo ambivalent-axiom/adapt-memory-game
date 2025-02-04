@@ -3,10 +3,10 @@ define(function () {
 
   class AssociativeMemoryGame {
     constructor(container, config = {}) {
-      this.onGameComplete = typeof config.onGameComplete?.function === 'string'
+      this.onGameComplete = typeof config.onGameComplete === 'string'
         // eslint-disable-next-line no-eval
-        ? () => eval(config.onGameComplete?.function) // Convert string to function
-        : config.onGameComplete?.function || (() => {});
+        ? () => eval(config.onGameComplete) // Convert string to function
+        : config.onGameComplete || (() => {});
       this.container = typeof container === 'string'
         ? document.querySelector(container)
         : container;
@@ -31,7 +31,7 @@ define(function () {
             text: 'Outline'
           }
         ],
-        gameCompleteTimeout: config.onGameComplete?.timeout || 500,
+        completionTimeout: config.completionTimeout || 500,
         movesText: config.movesText || 'Moves',
         winMsg: config.winMessage || 'Congratulations! You won!',
         gridSize: config.gridSize || 4,
@@ -246,7 +246,7 @@ define(function () {
       this.container.appendChild(winMessage);
       setTimeout(() => {
         this.onGameComplete();
-      }, this.gameCompleteTimeout);
+      }, this.completionTimeout);
     }
 
     resetGame() {
