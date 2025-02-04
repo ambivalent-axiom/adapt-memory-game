@@ -94,7 +94,11 @@ define([
       }
 
       try {
-        this._game = new AssociativeMemoryGame(container, config);
+        // Pass the onGameComplete handler to the game instance
+        this._game = new AssociativeMemoryGame(container, {
+          ...config,
+          onGameComplete: () => this.onGameComplete() // Add this line
+        });
       } catch (error) {
         Adapt.trigger('notify:alert', {
           title: 'Error',
@@ -104,11 +108,25 @@ define([
     },
 
     onGameComplete: function () {
+      const config = this.model.get('_memory-game');
       this.setCompletionStatus();
       this.model.set('_isComplete', true);
 
-      if (this.model.get('_isModal')) {
-        setTimeout(() => this.closeModal(), 1000);
+      // Show notification first
+      Adapt.notify.popup({
+        title: config.winMessage,
+        body: `${config.notifyBodyMessage} ${config.movesText}: ${this._game.moves}`,
+        _classes: 'memory-game-completion notify-push-game-modal',
+        _showCloseButton: true,
+        _isCancellable: true
+      });
+      this.closeModal();
+      // Execute custom onGameComplete function if exists
+      if (config.onGameComplete && config.onGameComplete !== '') {
+        if (typeof config.onGameComplete === 'string') {
+          // eslint-disable-next-line no-new-func
+          new Function(config.onGameComplete)();
+        }
       }
     },
 

@@ -86,6 +86,13 @@
           "inputType": "Text",
           "help": "Text to reflect when player wins."
         },
+        "notifyBodyMessage": {
+          "type": "string",
+          "default": "Conratulations! You Have Won!!!",
+          "title": "Notification Body Message",
+          "inputType": "Text",
+          "help": "Additional Text to reflect on Adapt Notification body when player wins."
+        },
         "winSound": {
           "type": "string",
           "default": "",
@@ -219,15 +226,6 @@
           "inputType": "Text",
           "validators": [],
           "help": "Event to trigger when game is completed (optional) - JS function in plain text"
-        },
-        "completionTimeout": { 
-          "type": "number",
-          "required": false,
-          "default": 200,
-          "title": "Timeout",
-          "inputType": "Number",
-          "validators": ["required", "number"],
-          "help": "After what time should completion event be triggered in miliseconds."
         }
       }
     }

@@ -31,7 +31,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            z-index: 1000;
+            z-index: 100;
 
             &.is-open {
                 display: block;
@@ -173,6 +173,9 @@
             color: @validation-success;
         }
     }
+}
+.notify.notify-push-game-modal {
+    z-index: 500; // Ensure notify appears above game modal
 }
 
 // RTL support

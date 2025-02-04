@@ -3,10 +3,7 @@ define(function () {
 
   class AssociativeMemoryGame {
     constructor(container, config = {}) {
-      this.onGameComplete = typeof config.onGameComplete === 'string'
-        // eslint-disable-next-line no-eval
-        ? () => eval(config.onGameComplete) // Convert string to function
-        : config.onGameComplete || (() => {});
+      this.onGameComplete = config.onGameComplete;
       this.container = typeof container === 'string'
         ? document.querySelector(container)
         : container;
@@ -162,17 +159,6 @@ define(function () {
       const movesDisplay = document.createElement('div');
       movesDisplay.textContent = `${this.config.movesText}: ${this.moves}`;
       this.movesDisplay = movesDisplay;
-
-      // const resetButton = document.createElement('button');
-      // resetButton.textContent = 'Reset Game';
-      // resetButton.style.padding = '0.5rem 1rem';
-      // resetButton.style.backgroundColor = this.config.theme.primary;
-      // resetButton.style.color = 'white';
-      // resetButton.style.border = 'none';
-      // resetButton.style.borderRadius = '4px';
-      // resetButton.style.cursor = 'pointer';
-      // resetButton.onclick = () => this.resetGame();
-
       this.statusBar.appendChild(movesDisplay);
       // this.statusBar.appendChild(resetButton);
       this.container.insertBefore(this.statusBar, this.gameBoard);
@@ -233,20 +219,8 @@ define(function () {
         this.winSound.currentTime = 0;
         this.winSound.play().catch(e => console.log('Audio playback failed:', e));
         this.gameStatus = 'won';
-        this.showWinMessage();
-      }
-    }
-
-    showWinMessage() {
-      const winMessage = document.createElement('div');
-      winMessage.style.marginTop = '1rem';
-      winMessage.style.textAlign = 'center';
-      winMessage.style.color = this.config.theme.highlight;
-      winMessage.textContent = this.config.winMsg;
-      this.container.appendChild(winMessage);
-      setTimeout(() => {
         this.onGameComplete();
-      }, this.completionTimeout);
+      }
     }
 
     resetGame() {
