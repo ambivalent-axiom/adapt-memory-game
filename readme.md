@@ -14,7 +14,8 @@ Component has some issues that needs to be adressed in case if required.
 When adding custom SVG via Authoring tool, make sure to use HTML edit in CKeditor and allow all HTML tags in CKEditor config:
 nano path to adapt_authoring/conf/config.json
 find and edit:
-```"ckEditorHtmlSupport": {
+```
+"ckEditorHtmlSupport": {
   "allow": [
     {
       "name": ".*",
@@ -23,6 +24,7 @@ find and edit:
       "styles": true
     }
   ]
-}```
+}
+```
 
 Flipping, correct match and component completion sounds can be added via assets.
