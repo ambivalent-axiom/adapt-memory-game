@@ -173,13 +173,21 @@
                 "validators": ["required"],
                 "help": "SVG markup for the card visual - single quoted, insert in HTML editor"
               },
+              "svg2": {
+                "type": "string",
+                "required": true,
+                "default": null,
+                "title": "SVG Content",
+                "inputType": "TextArea",
+                "help": "Optional. Add SVG markup if You want to match images. In case if present will be used instead of text."
+              },
               "text": {
                 "type": "string",
                 "required": true,
                 "title": "Matching Text",
                 "inputType": "Text",
                 "validators": ["required"],
-                "help": "Text that matches with the SVG"
+                "help": "Text that matches with the SVG. Mandatory because used as matchID."
               }
             }
           },

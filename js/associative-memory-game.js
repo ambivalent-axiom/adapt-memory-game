@@ -80,10 +80,21 @@ define(function () {
 
     createCards() {
       // Create array of all cards (SVGs and text)
-      const allCards = this.config.cardPairs.flatMap(pair => [
-        { type: 'svg', content: pair.svg, matchId: pair.text },
-        { type: 'text', content: pair.text, matchId: pair.text }
-      ]);
+      const allCards = this.config.cardPairs.flatMap(pair => {
+        if (pair.svg2) {
+          // If svg2 exists, return two svg cards with the same matchId for picture matching
+          return [
+            { type: 'svg', content: pair.svg, matchId: pair.text },
+            { type: 'svg', content: pair.svg2, matchId: pair.text }
+          ];
+        } else {
+          // If svg2 is null, return svg and text cards
+          return [
+            { type: 'svg', content: pair.svg, matchId: pair.text },
+            { type: 'text', content: pair.text, matchId: pair.text }
+          ];
+        }
+      });
 
       this.cards = this.shuffleArray(allCards).map((card, id) => ({
         id,
@@ -91,6 +102,8 @@ define(function () {
         isFlipped: false,
         isMatched: false
       }));
+
+      
 
       this.cards.forEach(card => {
         const cardElement = document.createElement('div');
