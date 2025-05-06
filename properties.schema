@@ -63,6 +63,27 @@
       "required": false,
       "title": "Memory Game",
       "properties": {
+        "isResetable": {
+          "type": "boolean",
+          "default": true,
+          "title": "Enable game resetting",
+          "inputType": "Checkbox",
+          "help": "Enable game reset button for the memory game"
+        },
+        "resetButtonText": {
+          "type": "string",
+          "default": "Reset",
+          "title": "Reset button text",
+          "inputType": "Text",
+          "help": "Text to show on reset button."
+        },
+        "maxWidth": {
+          "type": "string",
+          "default": "500px",
+          "title": "Max game board width",
+          "inputType": "Text",
+          "help": "Max width the game board can be. Example: 500px"
+        },
         "gridSize": {
           "type": "number",
           "required": false,

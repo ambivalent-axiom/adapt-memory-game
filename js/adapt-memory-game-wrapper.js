@@ -1,3 +1,5 @@
+const { is } = require("../../../../../../../../.cache/typescript/5.8/node_modules/@babel/types/lib/index");
+
 define([
   'core/js/adapt',
   'core/js/views/componentView',
@@ -97,7 +99,8 @@ define([
         // Pass the onGameComplete handler to the game instance
         this._game = new AssociativeMemoryGame(container, {
           ...config,
-          onGameComplete: () => this.onGameComplete() // Add this line
+          onGameComplete: () => this.onGameComplete(), // Add this line
+          isModal: this.model.get('_isModal')
         });
       } catch (error) {
         Adapt.trigger('notify:alert', {

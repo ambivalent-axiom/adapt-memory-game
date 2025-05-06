@@ -3,6 +3,7 @@ define(function () {
 
   class AssociativeMemoryGame {
     constructor(container, config = {}) {
+      this.isModal = config.isModal;
       this.onGameComplete = config.onGameComplete;
       this.container = typeof container === 'string'
         ? document.querySelector(container)
@@ -10,6 +11,9 @@ define(function () {
 
       this.config = {
         // Each pair contains SVG content and its matching text
+        isResetable: config.isResetable || false,
+        resetButtonText: config.resetButtonText || 'Reset',
+        maxWidth: config.maxWidth || '500px',
         cardPairs: config.cardPairs || [
           {
             svg: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/></svg>',
@@ -66,7 +70,7 @@ define(function () {
 
     createGameContainer() {
       this.container.innerHTML = '';
-      this.container.style.maxWidth = '800px'; // Increased for better text readability
+      this.container.style.maxWidth = this.config.maxWidth;
       this.container.style.margin = 'auto';
       this.container.style.marginTop = '1rem';
       this.container.style.padding = '1rem';
@@ -168,12 +172,25 @@ define(function () {
       this.statusBar.style.display = 'flex';
       this.statusBar.style.justifyContent = 'space-between';
       this.statusBar.style.alignItems = 'center';
+      if (this.isModal) {
+        this.statusBar.style.marginTop = '16px';
+      }
 
       const movesDisplay = document.createElement('div');
       movesDisplay.textContent = `${this.config.movesText}: ${this.moves}`;
       this.movesDisplay = movesDisplay;
       this.statusBar.appendChild(movesDisplay);
-      // this.statusBar.appendChild(resetButton);
+
+      if (this.config.isResetable) {
+        const resetButton = document.createElement('div');
+        resetButton.textContent = this.config.resetButtonText;
+        resetButton.className = 'mg-reset-button';
+        resetButton.onclick = this.resetGame.bind(this);
+
+        this.statusBar.appendChild(resetButton);
+      }
+
+
       this.container.insertBefore(this.statusBar, this.gameBoard);
     }
 
@@ -244,9 +261,6 @@ define(function () {
       this.gameStatus = 'playing';
       this.movesDisplay.textContent = `${this.config.movesText}: ${this.moves}`;
 
-      const winMessage = this.container.querySelector('div:last-child');
-      if (winMessage) { winMessage.remove(); }
-
       const cardElements = this.gameBoard.querySelectorAll('.memory-card');
       cardElements.forEach((card) => {
         const content = card.querySelector('div');
@@ -255,25 +269,8 @@ define(function () {
         content.style.display = 'none';
       });
 
-      this.cards = this.shuffleArray(this.cards);
-      cardElements.forEach((card, index) => {
-        card.dataset.id = this.cards[index].id;
-        const content = card.querySelector('div');
-        if (this.cards[index].type === 'svg') {
-          content.innerHTML = this.cards[index].content;
-          content.style.width = '60%';
-          content.style.height = '60%';
-          content.style.fontSize = '';
-          content.style.padding = '';
-          content.querySelector('svg').style.color = this.config.theme.primary;
-        } else {
-          content.textContent = this.cards[index].content;
-          content.style.width = '';
-          content.style.height = '';
-          content.style.fontSize = '1.2rem';
-          content.style.padding = '0.5rem';
-        }
-      });
+      this.gameBoard.innerHTML = '';
+      this.createCards();
     }
 
     shuffleArray(array) {

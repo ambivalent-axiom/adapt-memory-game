@@ -85,26 +85,21 @@
         width: 100%;
         margin: @item-padding 0;
 
+        .mg-reset-button {
+            display: block;
+            cursor: pointer;
+            
+            &:hover {
+                color: @mg-reset-button-hover;
+            }
+        }
+
         // Game status bar
         .game-status {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: @item-padding;
-
-            .reset-button {
-                display: inline-block;
-                padding: @btn-padding;
-                border: none;
-                border-radius: 3px;
-                background-color: @background;
-                color: @white;
-                cursor: pointer;
-                
-                &:hover {
-                    background-color: lighten(@black, 20%);
-                }
-            }
         }
 
         // Card grid layout
